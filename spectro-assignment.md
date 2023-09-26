@@ -2,7 +2,7 @@
 
 Kubernetes offers a command line tool named [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) that allows you to run debugging commands and communicate with a Kubernetes cluster's [`control plane`](https://kubernetes.io/docs/reference/glossary/?all=true#term-control-plane). This page explains how to troubleshoot errors in Kubernetes using `kubectl`.
 
-At the end of this guide, you will learn to identify, diagnose, and resolve issues with all your existing containers.
+At the end of this guide, you will learn to identify, diagnose, and resolve issues in Kubernetes.
 
 > **Tip:** You can use kubectl-tool for [stateless](https://kubernetes.io/docs/tutorials/stateless-application/) and [stateful](https://kubernetes.io/docs/tutorials/stateful-application/) applications in Kubernetes.
 
@@ -73,7 +73,7 @@ At the end of this guide, you will learn to identify, diagnose, and resolve issu
 
         > **Tip:** You can specify any available `shell` by changing `/bin/sh` to the shell name you want, like `/bin/bash` or `/bin/zsh`. Make sure the specified shell is installed and available within the container.
 
-5. (Optional) When troubleshooting complex issues, use the [`kubectl debug`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug) command for in-depth debugging. This command adds [ephemeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/) to a pod. For example: 
+5. (Optional) When troubleshooting complex issues, use the [`kubectl debug`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug) command for in-depth debugging. This command adds an [ephemeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/) to a pod. For example: 
 
     ```shell
     # Inject an ephemeral container to troubleshoot your specific pod container
