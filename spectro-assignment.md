@@ -12,6 +12,7 @@ At the end of this guide, you will learn to identify, diagnose, and resolve issu
 2. [What's Next](#whats-next)
 
 <div id='id-prerequisites'/>
+
 ## Prerequisites
 
 - You have `Kubectl` installed on your local machine. For installation instructions, follow the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/). 
@@ -19,72 +20,69 @@ At the end of this guide, you will learn to identify, diagnose, and resolve issu
 - You have [deployed a sample application](https://docs.spectrocloud.com/kubernetes-knowlege-hub/tutorials/deploy-stateless-frontend-app/) and connected the `kubectl` command-line tool (CLI) to the Kubernetes cluster.
 
 <div id='debug-steps'/>
+
 ## Debug Steps
 
-1. The first step is to get a list of available pods in your cluster. You can issue the `kubectl get pods` command to list all available pods and display their status.
+1. The first step is to get a list of available pods in your cluster. You can issue the [`kubectl get pods`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command to list all available pods and display their status.
 
     * Issue the above command with `--namespace` or `-n`  flag to list pods in a specific namespace in Kubernetes. For example:
 
         ```shell
-        # Replace [namespace] with the name of your namespace  
-        kubectl get pods --namespace [namespace]
-        ```
-        Output:
-        ```shell
-            NAMESPACE       NAME             READY    STATUS     RESTARTS    AGE
-            SPECTRONAUT     SPECTRO_POD1     2/2      Running    0           10h
-            SPECTRONAUT     SPECTRO_POD3     2/2      Running    1           20h
-            SPECTRONAUT     SPECTRO_POD2     1/2      Pending    0           30h
+        # Replace <namespace> with the name of your namespace  
+        kubectl get pods --namespace <namespace>
         ```
 
     * You can use `kubectl get pods --all-namespaces` to list all pods across all namespaces in a Kubernetes cluster.
 
-2. You can retrieve more information about each pod using `kubectl describe pod`. For example:
+2. You can retrieve more information about each pod using [`kubectl describe pod`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#describe). For example:
 
     ```shell
-    # Replace [pod-name] with the name of your pod 
-    kubectl describe pod [pod-name] -n [namespace]
+    # Replace <pod-name> with the name of your pod 
+    kubectl describe pod <pod-name> -n <namespace>
     ```
 
     * The above command returns configuration information about the container(s) and pod (e.g., labels, resource requirements), as well as status information about the container(s) and pod (e.g., state, readiness, restart count, events).
 
     * You can now identify the pod(s) associated with the application you want to debug.
 
-3. Issue the `Kubectl log` command to view the logs of a container that you want to debug.
+3. Issue the [`Kubectl log`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs) command to view the logs of a container that you want to debug.
 
     > :warning: You must specify the container's name if multiple containers run in a pod; otherwise, the command will fail. However, the container name is optional if the pod has only one container.
 
     ```shell
     # Use the argument -c to specify the container name
-    kubectl logs [pod-name] -c [container-name]
+    kubectl logs <pod-name> -c <container-name>
 
     # This returns a snapshot of the logs for all containers
-    kubectl logs [pod-name] --all-containers=true
+    kubectl logs <pod-name> --all-containers=true
 
     # Use the -p flag to display the logs of a pod that was previously running
-    kubectl logs -p [pod-name]
+    kubectl logs -p <pod-name>
     ```
 
     * Inspect the logs of the affected containers for error messages or any helpful information related to the issue.
 
-4. Issue the `kubectl exec` command to further explore the container's environment, configuration files, and log files from within. 
+4. Issue the [`kubectl exec`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec) command to further explore the container's environment, configuration files, and log files from within. 
 
     * To access a `shell` inside the container and to connect it to your terminal, use the `-it` flag to activate an interactive terminal session inside the pod's container. 
 
         ```shell
-        kubectl exec -it [pod-name] -c [container-name] -- /bin/sh
+        kubectl exec -it <pod-name> -c <container-name> -- /bin/sh
         ```
 
         > **Tip:** You can also use any available `shell` by changing `'/bin/sh'` with the shell name.
 
-5. (Optional) When troubleshooting complex issues, use the `kubectl debug` command for in-depth debugging. This command adds [Ephemeral Containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/) to a pod. For example: 
+5. (Optional) When troubleshooting complex issues, use the [`kubectl debug`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#debug) command for in-depth debugging. This command adds [Ephemeral Containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/) to a pod. For example: 
 
     ```shell
     # Inject an ephemeral container to troubleshoot your specific pod container
-    kubectl debug -it [pod-name] --image=busybox
+    kubectl debug -it <pod-name> --image=busybox
     ```
 
 <div id='whats-next'/>
+
 ## What's Next 
+
 * Refer to the Kubernetes documentation to learn more about debugging your [Application](https://kubernetes.io/docs/tasks/debug/debug-application/) or [Cluster](https://kubernetes.io/docs/tasks/debug/debug-cluster/).
+
 * Read the [Reference Guide](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-) for essential `kubectl` commands.
