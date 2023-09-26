@@ -11,11 +11,11 @@ This repository aims to improve the clarity and quality of Kubernetes documentat
 
 ## Introduction
 
-This repository enhances Kubernetes documentation and aims to create informative and inclusive documentation by following the Spectro Cloud [Style Guide]([url](https://github.com/spectrocloud/docs-assignments/blob/main/style_guide.md)).
+This repository enhances Kubernetes documentation and aims to create informative and inclusive documentation by following the Spectro Cloud [Style Guide](https://github.com/spectrocloud/docs-assignments/blob/main/style_guide.md).
 
 ## Assignment
 
-This repository is associated with a technical writing [assignment]([url](https://github.com/spectrocloud/docs-assignments/blob/main/technical-writer/instructions.md)) from Spectro Cloud. The assignment involves reviewing and enhancing existing Kubernetes documentation. Please take a look at the [assignment details]([url](https://github.com/spectrocloud/docs-assignments/blob/main/technical-writer/assignment.md)) for specific instructions.
+This repository is associated with a technical writing assignment from Spectro Cloud. The assignment involves reviewing and enhancing existing Kubernetes documentation. Please take a look at the [assignment details](https://github.com/spectrocloud/docs-assignments/blob/main/technical-writer/assignment.md) for specific instructions.
 
 ## Contact
 
